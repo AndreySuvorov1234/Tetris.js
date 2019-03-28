@@ -5,9 +5,9 @@ context.scale(20,20);
 
 //clears filled rows
 function arenaSweep(){
-    let rowCounter = 1;
-    outer: for(let y = arena.length-1; y > 0; --y){
-        for(let x =0; x<arena.length; ++x){
+    var rowCounter = 1;
+    outer: for(var y = arena.length-1; y > 0; --y){
+        for(var x =0; x<arena.length; ++x){
             if(arena[y][x]===0){
                 continue outer;
             }
@@ -27,8 +27,8 @@ function arenaSweep(){
 function collide(arena, player){
     //tuple assignment
     const[m,o] = [player.matrix, player.pos];
-    for(let y =0; y < m.length; ++y){
-        for(let x =0; x < m[y].length; ++x){
+    for(var y =0; y < m.length; ++y){
+        for(var x =0; x < m[y].length; ++x){
             if (m[y][x]!==0){
                 if(!arena[y + o.y])
                     return true;
@@ -158,7 +158,7 @@ function playerDrop(){
 //resets shape type and redeploys it
 function playerReset(){
     const pieces = 'ILJOTSZ';
-    let piece = pieces[pieces.length * Math.random() | 0];
+    var piece = pieces[pieces.length * Math.random() | 0];
     player.matrix=createPiece(piece);
     player.pos.y = 0;
     player.pos.x = (arena[0].length/2 | 0) - (player.matrix[0].length/2 | 0);
@@ -172,7 +172,7 @@ function playerReset(){
 //rotates shape accounting for the collisions
 function playerRotate(dir){
     const pos = player.pos.x;
-    let offset =1;
+    var offset =1;
     rotate(player.matrix, dir);
     while(collide(arena, player)){
         player.pos.x +=offset;
@@ -201,8 +201,8 @@ function rotate(matrix, dir){
     }
 }
 
-let dropCounter = 0;
-let dropInterval = 1000
+var dropCounter = 0;
+var dropInterval = 1000
 
 //increases difficulty
 function decreaseDropInterval(player){
@@ -219,7 +219,7 @@ function playerMove(dir){
 }
 
 //updates the board
-let lastTime = 0;
+var lastTime = 0;
 function update(time = 0){
     const deltaTime = time-lastTime;
     lastTime = time;
